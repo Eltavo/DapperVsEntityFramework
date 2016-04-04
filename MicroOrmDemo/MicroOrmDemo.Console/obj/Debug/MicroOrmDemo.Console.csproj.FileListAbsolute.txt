@@ -1,0 +1,13 @@
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\MicroOrmDemo.Console.exe.config
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\MicroOrmDemo.Console.exe
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\MicroOrmDemo.Console.pdb
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\Dapper.dll
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\Dapper.pdb
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\Dapper.xml
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\obj\Debug\MicroOrmDemo.Console.csprojResolveAssemblyReference.cache
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\obj\Debug\MicroOrmDemo.Console.exe
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\obj\Debug\MicroOrmDemo.Console.pdb
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\EntityFramework.dll
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\EntityFramework.SqlServer.dll
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\EntityFramework.xml
+D:\Tavo\Proyectos\Acceso a Datos\MicroORM\MicroOrmDemo\MicroOrmDemo.Console\bin\Debug\EntityFramework.SqlServer.xml
