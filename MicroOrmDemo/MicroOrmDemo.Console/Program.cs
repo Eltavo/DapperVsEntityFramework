@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Dapper;
+using MicroOrmDemo.Console.Entidades;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using Dapper;
-using MicroOrmDemo.Console.Entidades;
 using System.Diagnostics;
+using System.Linq;
 
 namespace MicroOrmDemo.Console
 {
@@ -22,6 +22,11 @@ namespace MicroOrmDemo.Console
             // EF
             ConsultarOrdenesEf();
 
+            // EF
+            ConsultarOrdenesEfAsNoTracking();
+
+            System.Console.WriteLine();
+
             /////////// consulta con dos tablas con relación (Eaguer load)
 
             //Dapper
@@ -29,6 +34,14 @@ namespace MicroOrmDemo.Console
 
             // EF
             ConsultarOrdenesDetallesEf();
+
+            // EF
+            ConsultarOrdenesDetallesEfAsNoTracking();
+
+            // EF
+            ConsultarOrdenesDetallesEfRawSQL();
+
+            System.Console.WriteLine();
 
             /////////// Inserción simple.
 
@@ -159,6 +172,21 @@ namespace MicroOrmDemo.Console
             }
         }
 
+        private static void ConsultarOrdenesEfAsNoTracking()
+        {
+            using (var contexto = new NorthwndModel())
+            {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                var ordenes = contexto.Orders.AsNoTracking().ToList();
+
+                stopwatch.Stop();
+                System.Console.WriteLine("EntityFramework AsNoTracking: {0} registros obtenidos en {1} milisegundos.", ordenes.Count,
+                    stopwatch.ElapsedMilliseconds);
+            }
+        }
+
         private static void ConsultarOrdenesDetallesEf()
         {
             using (var contexto = new NorthwndModel())
@@ -170,6 +198,47 @@ namespace MicroOrmDemo.Console
 
                 stopwatch.Stop();
                 System.Console.WriteLine("EntityFramework: {0} registros obtenidos en {1} milisegundos.",
+                    ordenesDetalle.Count, stopwatch.ElapsedMilliseconds);
+            }
+        }
+
+        private static void ConsultarOrdenesDetallesEfRawSQL()
+        {
+            var consulta = @"SELECT a.[OrderID] AS Id
+	                    ,a.[CustomerID] AS IdCliente
+	                    ,a.[OrderDate] AS Fecha
+                          ,b.[ProductID] AS IdProducto
+                          ,CAST(b.[UnitPrice] AS DECIMAL(18,2)) AS Precio
+                          ,CAST(b.[Quantity] AS INT) AS Cantidad
+                          ,CAST(b.[Discount] AS FLOAT) AS Descuento
+                      FROM [NORTHWND].[dbo].[Order Details] b
+                      INNER JOIN [NORTHWND].[dbo].[Orders] a
+                      ON a.OrderID = b.OrderID;";
+
+            using (var contexto = new NorthwndModel())
+            {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                var ordenesDetalle = contexto.Database.SqlQuery<DetalleOrden>(consulta).ToList();
+
+                stopwatch.Stop();
+                System.Console.WriteLine("EntityFramework RawSQL: {0} registros obtenidos en {1} milisegundos.",
+                    ordenesDetalle.Count, stopwatch.ElapsedMilliseconds);
+            }
+        }
+
+        private static void ConsultarOrdenesDetallesEfAsNoTracking()
+        {
+            using (var contexto = new NorthwndModel())
+            {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                var ordenesDetalle = contexto.Orders.Include("Order_Details").AsNoTracking().ToList();
+
+                stopwatch.Stop();
+                System.Console.WriteLine("EntityFramework AsNoTracking: {0} registros obtenidos en {1} milisegundos.",
                     ordenesDetalle.Count, stopwatch.ElapsedMilliseconds);
             }
         }
